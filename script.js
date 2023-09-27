@@ -1,3 +1,5 @@
+// SELECIONA OS SELETORES
+
 function pegarInput(){
     // Acessa classe document e busca elemento pelo id
     var inputElement = document.getElementById("input-produto")
@@ -10,6 +12,8 @@ function pegarInput(){
     // Move o foco para o elemento encontrado
     inputElement.focus()
 }
+
+// MANIPULAÇÃO DO DOM
 
 function criaLinhaProduto(nomeDoProduto){
     // Cria elemento linha com todos os elementos internos
@@ -24,6 +28,7 @@ function criaLinhaProduto(nomeDoProduto){
     var botaoEditar = document.createElement('button')
     botaoEditar.type = "button"
     botaoEditar.className = "btn"
+    botaoEditar.addEventListener('click', editaProduto)
 
     var iconeEditar = document.createElement('span')
     iconeEditar.className = "material-icons"
@@ -69,4 +74,40 @@ function criaLinhaProduto(nomeDoProduto){
     var elementoTBody = document.getElementById('registro-produto')
     // Anexa a linha produto ao tbody
     elementoTBody.appendChild(linhaProduto)
+}
+
+// EVENTOS
+
+function editaProduto(objetoDeEventos){
+    var elementoButtonOrSpan = objetoDeEventos.target
+    var elementoTd
+
+    if (elementoButtonOrSpan.tagName === 'BUTTON'){
+        elementoTd = elementoButtonOrSpan.parentNode
+    }else{
+        elementoTd = elementoButtonOrSpan.parentNode.parentNode
+    }
+
+    var elementoTdPreviousSibling = elementoTd.previousSibling
+    var elementoInput = criaEntradaDeTexto(elementoTdPreviousSibling.innerText)
+    
+    elementoTdPreviousSibling.innerText = ''
+    elementoTdPreviousSibling.appendChild(elementoInput)
+
+}
+
+function criaEntradaDeTexto(textoAtual){
+    var container = document.createElement('div')
+    var entradaDeTexto = document.createElement('input')
+    entradaDeTexto.value = textoAtual
+    var botaoConfirmar = document.createElement('button')
+    botaoConfirmar.innerText = '✔️'
+    var botaoCancelar = document.createElement('button')
+    botaoCancelar.innerText = '❌'
+
+    container.appendChild(entradaDeTexto)
+    container.appendChild(botaoConfirmar)
+    container.appendChild(botaoCancelar)
+
+    return container
 }
