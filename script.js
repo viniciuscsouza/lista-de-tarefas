@@ -18,6 +18,7 @@ function criaElementoTarefaNaListaDeTarefas(parametroNomeDaTarefa){
     
     const elementoBotaoEditarTarefa = document.createElement('button')
     elementoBotaoEditarTarefa.innerText = "Editar"
+    elementoBotaoEditarTarefa.addEventListener("click", editaElementoTarefaNaListaDeTarefas)
     
     const elementoBotaoExcluirTarefa = document.createElement('button')
     elementoBotaoExcluirTarefa.innerText = "Excluir"
@@ -28,18 +29,20 @@ function criaElementoTarefaNaListaDeTarefas(parametroNomeDaTarefa){
     elementoDivTarefa.appendChild(elementoBotaoEditarTarefa)
     elementoDivTarefa.appendChild(elementoBotaoExcluirTarefa)
     
-    // Valor armazenado na constante elementoDivTarefa:
-    // <div>                            <---- Elemento PAI
-    //     <p>nome da tarefa</p>        <---- Elemento FILHO
-    //     <button>Editar</button>      <---- Elemento FILHO
-    //     <button>Excluir</button>     <---- Elemento FILHO
-    // <div>
-
     const elementoDivListaDeTarefas = document.getElementById('div-lista-de-tarefas')
     elementoDivListaDeTarefas.appendChild(elementoDivTarefa)
 }
 
 function removeElementoTarefaNaListaDeTarefas(objetoDeEventos){
     const botaoQueFoiClicado = objetoDeEventos.target
+    botaoQueFoiClicado.parentNode.remove()
+}
+
+function editaElementoTarefaNaListaDeTarefas(objetoDeEventos){
+    const botaoQueFoiClicado = objetoDeEventos.target
+    const paragrafoDaTarefa = botaoQueFoiClicado.previousSibling
+    const textoInternoDoParagrafo = paragrafoDaTarefa.innerText
+    const elementoInputTarefa = document.getElementById('input-tarefa')
+    elementoInputTarefa.value = textoInternoDoParagrafo
     botaoQueFoiClicado.parentNode.remove()
 }
