@@ -14,6 +14,7 @@ function pegarValorDeInputTarefa(){
 function criaElementoTarefaNaListaDeTarefas(parametroNomeDaTarefa){
     
     const elementoParagrafoTarefa = document.createElement('p') // Cria isso: <p>"innerText"</p>
+    elementoParagrafoTarefa.style = "font-size: 18px; font-weight: 600"
     elementoParagrafoTarefa.innerText = parametroNomeDaTarefa
     
     const elementoBotaoEditarTarefa = document.createElement('button')
@@ -24,9 +25,11 @@ function criaElementoTarefaNaListaDeTarefas(parametroNomeDaTarefa){
     const elementoBotaoExcluirTarefa = document.createElement('button')
     elementoBotaoExcluirTarefa.innerText = "Excluir"
     elementoBotaoExcluirTarefa.className = "waves-effect waves-light btn-small red darken-2"
+    elementoBotaoExcluirTarefa.style = "margin-left: 12px"
     elementoBotaoExcluirTarefa.addEventListener("click", removeElementoTarefaNaListaDeTarefas)
   
     const elementoDivTarefa = document.createElement('div')
+    elementoDivTarefa.style = "margin-top: 28px"
     elementoDivTarefa.appendChild(elementoParagrafoTarefa)
     elementoDivTarefa.appendChild(elementoBotaoEditarTarefa)
     elementoDivTarefa.appendChild(elementoBotaoExcluirTarefa)
