@@ -1,5 +1,9 @@
 export const CHAVE_DO_LOCAL_STORAGE = 'listaDeTarefas'
 
+export function soma(a, b){
+    return a + b
+}
+
 export function pegarValorDeInputTarefa(){
     const elementoInputTarefa = document.getElementById('input-tarefa')
     const nomeDaTarefa = elementoInputTarefa.value
